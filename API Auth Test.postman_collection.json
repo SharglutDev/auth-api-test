@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0cb6cb13-9af0-4dc6-a80a-f29451af354c",
+		"_postman_id": "e294b076-1b3b-4936-a34e-ff29a2ce6dc0",
 		"name": "API Auth Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11636528"
+		"_exporter_id": "11636573"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"simplon2@gmail.com\",\r\n    \"password\": \"123456789azerty\",\r\n    \"role\": \"user\"\r\n}",
+					"raw": "{\r\n    \"email\": \"coco@gmail.com\",\r\n    \"password\": \"<hsfgjqkmhgç_(\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,7 +72,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkNzY3NzdiLTVkNzMtNGU5Yy1hNWZiLTdmODFlZDc0YzU4MSIsImlhdCI6MTY2ODY4OTUyNSwiZXhwIjoxNjY4NjkzMTI1fQ.miESfiQRIv1icFcL7XinziPabyh0DucVBPIvoKGxhG4",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzAwZTBjLTc1YTQtNDUzNi1iMjM1LWI1NDg4ZjZmZDI1OCIsImlhdCI6MTY2ODcwNzgzMCwiZXhwIjoxNjY4NzA3ODkwfQ.0oh550jL00ylqUMpC6Rg7ft50u7hzRLPqP2VuRaoa-Q",
 							"type": "string"
 						}
 					]
@@ -139,6 +139,68 @@
 					"path": [
 						"api",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/coco@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"coco@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/68700e0c-75a4-4536-b235-b5488f6fd258",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"68700e0c-75a4-4536-b235-b5488f6fd258"
 					]
 				}
 			},

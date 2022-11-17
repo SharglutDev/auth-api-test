@@ -5,6 +5,7 @@ import cors from "cors";
 import path from "path";
 import authRouter from "./routes/auth.routes";
 import cookieParser from "cookie-parser";
+import { userRouter } from "./routes/user.routes";
 
 dotenv.config({ path: ".env.local" });
 
@@ -35,6 +36,7 @@ AppDataSource.initialize().then(async () => {
 
   // ***** Config Routes *****
   app.use("/api", authRouter);
+  app.use("/api", userRouter);
 
   // ***** Port Config ****
   app.listen(PORT, () => {

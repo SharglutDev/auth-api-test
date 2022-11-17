@@ -9,7 +9,11 @@ export const createUser = async (input: User) => {
   )) as User;
 };
 
-export const findUserByEmail = async ({ email }: { email: string }) => {
+export const findAllUsers = async (): Promise<User[]> => {
+  return await userRepository.find();
+};
+
+export const findUserByEmail = async (email: string) => {
   return await userRepository.findOneBy({ email });
 };
 

@@ -8,14 +8,30 @@ const userRepository = AppDataSource.getRepository(User);
 
 export const Register = async (req: Request, res: Response) => {
   const { email, password, role } = req.body;
+  console.log(`email : ${email}, password : ${password}`);
 
-  const user = await userRepository.save({
-    email,
-    password: await bcryptjs.hash(password, 12),
-    role,
-  });
+  if (!email && !password && !role) {
+    res.status(400).send({ status: "FAILED", message: "Missing Parameter" });
+    return;
+  }
 
-  res.send(user);
+  try {
+    const user = await userRepository.save({
+      email,
+      password: await bcryptjs.hash(password, 12),
+      role,
+    });
+
+    res.send({
+      status: "OK",
+      message: "User successfully registered",
+      data: user,
+    });
+  } catch (error: any) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", message: error?.message || error });
+  }
 };
 
 export const Login = async (req: Request, res: Response) => {
@@ -69,8 +85,8 @@ export const Login = async (req: Request, res: Response) => {
 
   res.send({
     status: "OK",
-    message: "success",
-    data: { accesToken: accessToken, refreshToken: refreshToken },
+    message: "User successfully logged",
+    data: { accessToken: accessToken, refreshToken: refreshToken },
   });
 };
 
@@ -152,7 +168,7 @@ export const Refresh = async (req: Request, res: Response) => {
       res.send({
         status: "OK",
         message: "success",
-        data: { newAccessToken: accessToken },
+        data: { accessToken: accessToken },
       });
     }
   } catch (error) {
