@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import AppDataSource from "../data-source";
 import { sign, verify } from "jsonwebtoken";
 
-const userRepository = AppDataSource.getRepository(User);
+export const userRepository = AppDataSource.getRepository(User);
 
 export const Register = async (req: Request, res: Response) => {
   const { email, password, role } = req.body;
@@ -62,7 +62,7 @@ export const Login = async (req: Request, res: Response) => {
       id: user.id,
     },
     "access_secret",
-    { expiresIn: 60 }
+    { expiresIn: 60 * 60 }
   );
 
   const refreshToken = sign(
@@ -93,6 +93,7 @@ export const Login = async (req: Request, res: Response) => {
 export const AuthenticatedUser = async (req: Request, res: Response) => {
   try {
     // const accessToken = req.cookies["accessToken"];
+    console.log(req.headers);
     const bearerToken = req.headers["authorization"];
     console.log("\x1b[32mbearer token : \x1b[0m", bearerToken);
     const accessToken = bearerToken?.split(" ")[1];
@@ -123,7 +124,11 @@ export const AuthenticatedUser = async (req: Request, res: Response) => {
 
       const { password, ...data } = user;
 
-      res.send(user);
+      res.send({
+        status: "OK",
+        message: "Congrats, you have access to this page",
+        data: user,
+      });
     }
   } catch (error) {
     console.log(error);

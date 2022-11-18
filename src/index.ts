@@ -20,7 +20,7 @@ AppDataSource.initialize().then(async () => {
   const corsOptions = {
     origin: ["http://localhost:3000", "http://localhost:8080"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: "X-Request-With, content-type",
+    allowedHeaders: ["X-Request-With", "content-type", "authorization"],
   };
 
   app.use(cors(corsOptions));
